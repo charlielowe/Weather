@@ -21,7 +21,14 @@
        
 }
 
+#weather{
+    grid-area: weather;
 
+}
+
+#temperature{
+    grid-area: temperature;
+}
     
 
 
