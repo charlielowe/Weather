@@ -39,6 +39,7 @@ async function getWeather(lat, long) {
       "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
   );
   var data = await response.json();
+  console.log(data);
   weather[0 + next].innerHTML =
     "Min Temp = " + data.Days[pageClass].temp_min_c + " °C";
   weather[1 + next].innerHTML =
@@ -57,7 +58,6 @@ async function getCurrentWeather(lat, long) {
       "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
   );
   var current = await response.json();
-  console.log(current);
   var top = document.getElementsByClassName("top");
   top[0].innerHTML = "Current Weather - Today - " + days[day];
   top[1].innerHTML = "Weather = " + current.wx_desc;
