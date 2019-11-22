@@ -1,19 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="resources/css/css.css" />
-  </head>
-  <body>
-    <div id="header"><img src="resources/images/logo.png" width="70"> <p>Weather</p></div>
-    <div class="content">
-      <img src="" alt="" class="weather" />
-      <h1 class="weather" id="weather"></h1>
-      <h1 class="weather" id="temperature"></h1>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="resources/css/css.css" />
+</head>
+
+<body>
+  <div id="header"><img src="resources/images/logo.png" width="70">
+    <p>Weather</p>
+  </div>
+  <div class="centre">
+    <div class="mainCard">
+      <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Monday')">Monday</button>
+        <button class="tablinks" onclick="openCity(event, 'Tuesday')">Tuesday</button>
+        <button class="tablinks" onclick="openCity(event, 'Wednesday')">Wednesday</button>
+        <button class="tablinks" onclick="openCity(event, 'Thursday')">Thursday</button>
+        <button class="tablinks" onclick="openCity(event, 'Friday')">Friday</button>
+        <button class="tablinks" onclick="openCity(event, 'Saturday')">Saturday</button>
+        <button class="tablinks" onclick="openCity(event, 'Sunday')">Sunday</button>
+      </div>
+
+      <div class="card1 border">
+        <div class="container current" id="title">
+          <h1 class="today top"></h1>
+
+
+          <div style="margin-left: 27rem">
+          <h1 class="top"></h1>
+          <h1 class="top"></h1>
+          <h1 class="top"></h1>
+          <h1 class="top"></h1>
+          <h1 class="top"></h1>
+        </div>
+        </div>
+      </div>
+
+
+      
+      <div class="card border">
+
+        <div id="Monday" class="tabcontent"></div>
+        <div id="Tuesday" class="tabcontent"></div>
+        <div id="Wednesday" class="tabcontent"></div>
+        <div id="Thursday" class="tabcontent"></div>
+        <div id="Friday" class="tabcontent"></div>
+        <div id="Saturday" class="tabcontent"></div>
+        <div id="Sunday" class="tabcontent"></div>
+      </div>
+   
     </div>
-    <script src="resources/js/index.js"></script>
-  </body>
+  </div>  
+    <template>
+      <div class="content" id="template">
+
+
+        <div class="card2">
+          <img src="/resources/images/Color-Temperature.jpg" id="image1">
+          <div class="container1">
+            <h1 class="weather"></h1>
+            <h1 class="weather"></h1>
+          </div>
+        </div>
+        <div class="card3">
+          <img src="resources/images/windspeed.jpeg" id="image1">
+          <div class="container1">
+            <h1 class="weather"></h1>
+          </div>
+        </div>
+      </div>
+      </h1>
+  </div>
+  </template>
+  <script src="resources/js/index.js"></script>
+</body>
+
 </html>
