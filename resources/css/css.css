@@ -63,21 +63,44 @@
   align-items: center;
 }
 .card1 {
-  grid-area: weather;
+  grid-area: a1;
 }
 
 .card2 {
-  grid-area: temperature;
+  grid-area: a2;
 }
 
 .card3 {
-  grid-area: windspeed;
+  grid-area: a3;
 }
 
 .card4 {
-  grid-area: winddir;
+  grid-area: a4;
 }
 
+.card5 {
+  grid-area: a5;
+}
+
+.card6 {
+  grid-area: a6;
+}
+
+.card7 {
+  grid-area: a7;
+}
+
+.card8 {
+  grid-area: a8;
+}
+
+.card9 {
+  grid-area: a9;
+}
+
+.card10 {
+  grid-area: a10;
+}
 .card {
   height: 50vh;
 }
@@ -109,8 +132,13 @@
 .content {
   display: grid;
   grid-template-columns: 2fr 4fr 1fr 4fr 2fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: " . temperature . windspeed . ";
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+  " . a1 . a2 . "
+  " . a3 . a4 ."
+  " . a5 . a6 ."
+  " . a8 . a7 ."
+  " . a9 . a10 .";
 }
 
 .tab {

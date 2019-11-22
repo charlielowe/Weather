@@ -40,13 +40,7 @@ async function getWeather(lat, long) {
   );
   var data = await response.json();
   console.log(data);
-  weather[0 + next].innerHTML =
-    "Min Temp = " + data.Days[pageClass].temp_min_c + " °C";
-  weather[1 + next].innerHTML =
-    "Max Temp = " + data.Days[pageClass].temp_max_c + " °C";
-  weather[2 + next].innerHTML =
-    "Max Wind Speed = " + data.Days[pageClass].windspd_max_mph + "mph";
-  next += 3;
+  next = page(pageClass, next, data);
   pageClass++;
 }
 async function getCurrentWeather(lat, long) {
@@ -99,3 +93,39 @@ function openCity(evt, cityName) {
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
+
+function time1(time){
+
+  var result;
+  if(time.toString().length>=3){
+    if((time/100) > 12){
+      result = (time/100) - 12 + "PM";
+    }else{
+      result = (time/100) + "AM";
+    }
+    return result;
+  }
+ if(time == 0){
+  result = "12 PM";
+ }
+ return result;;
+}
+
+function page(pageClass, next, data){
+  
+  weather[0 + next].innerHTML =
+    "Min Temp = " + data.Days[pageClass].temp_min_c + " °C";
+  weather[1 + next].innerHTML =
+    "Max Temp = " + data.Days[pageClass].temp_max_c + " °C";
+  weather[2 + next].innerHTML =
+    "Max Wind Speed = " + data.Days[pageClass].windspd_max_mph + "mph";
+  for(i=3;i<11;i++){
+    weather[i + next].innerHTML = time1(data.Days[pageClass].Timeframes[i-3].time);
+  }
+  next += 11;
+  
+  return next;
+}
+
+
+
