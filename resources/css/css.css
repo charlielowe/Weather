@@ -1,12 +1,12 @@
 #header{
     
 
-    
+  
     
     background-color: black;
     color: white;
     font-family: 'Courier New', Courier, monospace;
-    font-size: 70px;
+    font-size: 3rem;
     margin-top: 0px;
     margin: 0px;
     text-align: center;
@@ -14,22 +14,61 @@
 
 }
 
-.content{
-    display: grid;
-    grid-template-areas:
-      'weather temperature'
-       
-}
 
-#weather{
+.card1, .card2, .card3, .card4 {
+    margin: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 80%;
+  }
+
+  .card1{
     grid-area: weather;
+  }
 
-}
-
-#temperature{
+  .card2{
     grid-area: temperature;
+  }
+
+  .card3{
+    grid-area: windspeed;
+  }
+
+  .card4{
+    grid-area: winddir;
+  }
+  
+  #image1{
+      width: 99%;
+      border: solid black;
+      height: 15rem;
+  }
+  .card1:hover,.card2:hover,.card3:hover,.card4:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+  .container1 {
+    padding: 2px 16px;
+    padding-bottom: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+.weather{
+  
+    text-align: center;
+    margin-top: 50px;
+    font-size: 1.5rem;
+    margin-left: 0px;
+    padding-left: 0px;
 }
-    
+
+#logo{
+    padding: 0px;
+    width: 30%;
+    height: 30%;
+   
+}
 
 
 * {
@@ -40,4 +79,14 @@
     font-size: 100%;
     vertical-align: baseline;
     background: transparent;
+}
+
+.content{
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+  " . weather temperature . "
+  " . windspeed winddir . "
+  ;
 }
