@@ -1,6 +1,8 @@
-var weather = document.getElementsByClassName("weather");
+﻿var weather = document.getElementsByClassName("weather");
 var today = document.getElementsByClassName("today")[0];
 var tabs = document.getElementsByClassName("tablinks");
+var app_id = "9e946863";
+var app_key = "e08ee008e50d82b421467fee14ab421b";
 var d = new Date();
 var day = d.getDay();
 var days = [
@@ -31,76 +33,79 @@ window.addEventListener("load", function () {
 var next = 0;
 var pageClass = 0;
 async function getWeather(lat, long) {
-  
   var response = await fetch(
     "http://api.weatherunlocked.com/api/forecast/" +
     lat +
     "," +
     long +
-    "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
+    "?app_id="
+    + app_id +
+    "+&app_key="
+    + app_key, {
+    type: "GET",
+  }
   );
 
-  
+
   var data = await response.json();
-  console.log(data);
-  weather[0+next].innerHTML =
+  weather[0 + next].innerHTML =
     tabs[pageClass].innerHTML;
-  weather[1+next].innerHTML =
+  weather[1 + next].innerHTML =
     "Min Temp:" + data.Days[pageClass].temp_min_c + " °C";
-  weather[2+next].innerHTML =
+  weather[2 + next].innerHTML =
     "Max Temp: " + data.Days[pageClass].temp_max_c + " °C";
-  weather[3+next].innerHTML =
+  weather[3 + next].innerHTML =
     "Max Wind Speed: " + data.Days[pageClass].windspd_max_mph + "mph";
 
-    try{
-        for (i = 0; i < 8; i++) {
-          var jsonArray = data.Days[pageClass].Timeframes[i];
-          createMore(text,jsonArray,i);
-        }
-        next += 4;
-        pageClass++;
-      }
-    
-    catch(e){
-      var text ="ERROR";
-      createMore(text,jsonArray,i);
-
+  try {
+    for (i = 0; i < 8; i++) {
+      var jsonArray = data.Days[pageClass].Timeframes[i];
+      createMore(text, jsonArray, i);
     }
+    next += 4;
+    pageClass++;
   }
 
-  function createMore(text,jsonArray,i){ 
-    
-          var headerTag = document.createElement("h1");
-          headerTag.classList.add("weather");
-          var newdiv = document.createElement("div");
-          newdiv.classList.add("card" + (3 + i));
-          
-          if(text=="ERROR"){
-            var text = document.createTextNode("Sorry, we've ran out of data for this day.");
-            headerTag.appendChild(text);
-            newdiv.appendChild(headerTag);
-            document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
-          }else{
-            var info = [time(jsonArray.time),("Weather: "+jsonArray.wx_desc),("Temperature: "+jsonArray.temp_c+"°C"),("Wind speed: "+jsonArray.windspd_mph +" MPH"),("Wind direction: "+jsonArray.winddir_deg + "° / "+ jsonArray.winddir_compass),("../resources/images/icons/"+jsonArray.wx_icon)];  
-            var anotherDiv = document.createElement("div");
-            anotherDiv.classList.add("cardContent");
-            for(k=0;k<5;k++){
-              var headerTag = document.createElement("h1");
-              var text = document.createTextNode(info[k]);
-              headerTag.appendChild(text);
-              anotherDiv.appendChild(headerTag);
-              newdiv.appendChild(anotherDiv);
-            }
-            var image = document.createElement("img");
-            image.setAttribute("src",info[5]);
-            imageDiv = document.createElement("div");
-            imageDiv.classList.add("right");
-            imageDiv.appendChild(image);
-            newdiv.appendChild(imageDiv);
-          }
-          
-          document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+  catch (e) {
+    var text = "ERROR";
+    createMore(text, jsonArray, i);
+
   }
+}
+
+function createMore(text, jsonArray, i) {
+
+  var headerTag = document.createElement("h1");
+  headerTag.classList.add("weather");
+  var newdiv = document.createElement("div");
+  newdiv.classList.add("card" + (3 + i));
+
+  if (text == "ERROR") {
+    var text = document.createTextNode("Sorry, we've ran out of data for this day.");
+    headerTag.appendChild(text);
+    newdiv.appendChild(headerTag);
+    document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+  } else {
+    var info = [time(jsonArray.time), ("Weather: " + jsonArray.wx_desc), ("Temperature: " + jsonArray.temp_c + "°C"), ("Wind speed: " + jsonArray.windspd_mph + " MPH"), ("Wind direction: " + jsonArray.winddir_deg + "° / " + jsonArray.winddir_compass), ("../resources/images/icons/" + jsonArray.wx_icon)];
+    var anotherDiv = document.createElement("div");
+    anotherDiv.classList.add("cardContent");
+    for (k = 0; k < 5; k++) {
+      var headerTag = document.createElement("h1");
+      var text = document.createTextNode(info[k]);
+      headerTag.appendChild(text);
+      anotherDiv.appendChild(headerTag);
+      newdiv.appendChild(anotherDiv);
+    }
+    var image = document.createElement("img");
+    image.setAttribute("src", info[5]);
+    imageDiv = document.createElement("div");
+    imageDiv.classList.add("right");
+    imageDiv.appendChild(image);
+    newdiv.appendChild(imageDiv);
+  }
+
+  document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+}
 
 async function getCurrentWeather(lat, long) {
   var response = await fetch(
@@ -108,11 +113,14 @@ async function getCurrentWeather(lat, long) {
     lat +
     "," +
     long +
-    "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
+    "?app_id=" +
+    app_id +
+    "&app_key=" +
+    app_key
   );
   var current = await response.json();
   var top = document.getElementsByClassName("top");
-  top[0].innerHTML = "Current Weather - Today - (" + days[day-1] +")";
+  top[0].innerHTML = "Current Weather - Today - (" + days[day - 1] + ")";
   top[1].innerHTML = "Weather: " + current.wx_desc;
   top[2].innerHTML = "Current wind speed: " + current.windspd_mph + "mph";
   top[3].innerHTML = "Current temp: " + current.temp_c + " °C";
@@ -170,7 +178,7 @@ function time(time) {
   return result;
 }
 
-function scroll(){
+function scroll() {
   var elmnt = document.getElementsByClassName("tab")[0];
   elmnt.scrollIntoView();
 }
