@@ -13,19 +13,18 @@
   <div id="header"><img src="resources/images/logo.png" width="70">
     <p>Weather</p>
   </div>
-  <div class="centre">
     <div class="mainCard">
-      <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Monday')">Monday</button>
-        <button class="tablinks" onclick="openCity(event, 'Tuesday')">Tuesday</button>
-        <button class="tablinks" onclick="openCity(event, 'Wednesday')">Wednesday</button>
-        <button class="tablinks" onclick="openCity(event, 'Thursday')">Thursday</button>
-        <button class="tablinks" onclick="openCity(event, 'Friday')">Friday</button>
-        <button class="tablinks" onclick="openCity(event, 'Saturday')">Saturday</button>
-        <button class="tablinks" onclick="openCity(event, 'Sunday')">Sunday</button>
+      <div class="tab centre fix">
+        <button class="tablinks" onclick="openCity(event, '0')">Monday</button>
+        <button class="tablinks" onclick="openCity(event, '1')">Tuesday</button>
+        <button class="tablinks" onclick="openCity(event, '2')">Wednesday</button>
+        <button class="tablinks" onclick="openCity(event, '3')">Thursday</button>
+        <button class="tablinks" onclick="openCity(event, '4')">Friday</button>
+        <button class="tablinks" onclick="openCity(event, '5')">Saturday</button>
+        <button class="tablinks" onclick="openCity(event, '6')">Sunday</button>
       </div>
 
-      <div class="card1 border">
+      <div class="card1 border centre fix">
         <div class="container current" id="title">
           <h1 class="today top"></h1>
 
@@ -41,89 +40,39 @@
       </div>
 
 
-      
-      <div class="card border">
+      <div class="card border centre fix"  >
 
-        <div id="Monday" class="tabcontent"></div>
-        <div id="Tuesday" class="tabcontent"></div>
-        <div id="Wednesday" class="tabcontent"></div>
-        <div id="Thursday" class="tabcontent"></div>
-        <div id="Friday" class="tabcontent"></div>
-        <div id="Saturday" class="tabcontent"></div>
-        <div id="Sunday" class="tabcontent"></div>
-      </div>
-   
+        <div id="0" class="tabcontent"></div>
+        <div id="1" class="tabcontent"></div>
+        <div id="2" class="tabcontent"></div>
+        <div id="3" class="tabcontent"></div>
+        <div id="4" class="tabcontent"></div>
+        <div id="5" class="tabcontent"></div>
+        <div id="6" class="tabcontent"></div>
     </div>
-  </div>  
+    </div>
+  </div>
+
+
     <template>
       <div class="content" id="template">
 
 
         <div class="card1">
           <img src="/resources/images/Color-Temperature.jpg" id="image1">
-          <div class="container1">
             <h1 class="weather"></h1>
             <h1 class="weather"></h1>
-          </div>
         </div>
         <div class="card2">
           <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
             <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card3">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card4">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card5">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card6">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card7">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card8">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card9">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
-        </div>
-        <div class="card10">
-          <img src="resources/images/windspeed.jpeg" id="image1">
-          <div class="container1">
-            <h1 class="weather"></h1>
-          </div>
         </div>
       </div>
       </h1>
   </div>
   </template>
+
+
   <script src="resources/js/index.js"></script>
 </body>
 

@@ -2,7 +2,7 @@ var weather = document.getElementsByClassName("weather");
 var today = document.getElementsByClassName("today")[0];
 var tabs = document.getElementsByClassName("tablinks");
 var d = new Date();
-var day = d.getDay() - 1;
+var day = d.getDay();
 var days = [
   "Monday",
   "Tuesday",
@@ -12,51 +12,99 @@ var days = [
   "Saturday",
   "Sunday"
 ];
-window.addEventListener("load", function() {
+window.addEventListener("load", function () {
   for (i = 0; i < 7; i++) {
     if (day > 7) {
       day = 1;
     }
-    tabs[i].textContent = days[day];
+    tabs[i].textContent = days[day - 1];
     day++;
   }
-
   for (i = 0; i < 7; i++) {
     var temp = document.getElementsByTagName("template")[0];
     var clon = temp.content.cloneNode(true);
-    document.getElementById(days[i]).appendChild(clon);
+    document.getElementById(i).appendChild(clon);
     getLocation();
   }
 });
+
 var next = 0;
 var pageClass = 0;
 async function getWeather(lat, long) {
+  
   var response = await fetch(
     "http://api.weatherunlocked.com/api/forecast/" +
-      lat +
-      "," +
-      long +
-      "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
+    lat +
+    "," +
+    long +
+    "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
   );
+  
   var data = await response.json();
   console.log(data);
-  next = page(pageClass, next, data);
-  pageClass++;
-}
+  weather[0+next].innerHTML =
+    "Min Temp:" + data.Days[pageClass].temp_min_c + " °C";
+  weather[1+next].innerHTML =
+    "Max Temp: " + data.Days[pageClass].temp_max_c + " °C";
+  weather[2+next].innerHTML =
+    "Max Wind Speed: " + data.Days[pageClass].windspd_max_mph + "mph";
+
+    try{
+        for (i = 0; i < 8; i++) {
+          var jsonArray = data.Days[pageClass].Timeframes[i];
+          createMore(text,jsonArray,i);
+        }
+        next += 3;
+        pageClass++;
+      }
+    
+    catch(e){
+      var text ="ERROR";
+      createMore(text,jsonArray,i);
+
+    }
+  }
+
+  function createMore(text,jsonArray,i){ 
+    
+          var headerTag = document.createElement("h1");
+          headerTag.classList.add("weather");
+          var newdiv = document.createElement("div");
+          newdiv.classList.add("card" + (3 + i));
+          
+          if(text=="ERROR"){
+            var text = document.createTextNode("Sorry, we've ran out of data for this day.");
+            headerTag.appendChild(text);
+            newdiv.appendChild(headerTag);
+            document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+          }else{
+            var info = [time1(jsonArray.time),("Weather: "+jsonArray.wx_desc),("Temperature: "+jsonArray.temp_c+"°C"),("Wind speed: "+jsonArray.windspd_mph +" MPH"),("Wind direction: "+jsonArray.winddir_deg + "° / "+ jsonArray.winddir_compass)];  
+            for(k=0;k<5;k++){
+              var headerTag = document.createElement("h1");
+              var text = document.createTextNode(info[k]);
+              headerTag.appendChild(text);
+              newdiv.appendChild(headerTag);
+            }
+          }
+
+          
+          document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+  }
+
 async function getCurrentWeather(lat, long) {
   var response = await fetch(
     "http://api.weatherunlocked.com/api/current/" +
-      lat +
-      "," +
-      long +
-      "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
+    lat +
+    "," +
+    long +
+    "?app_id=9e946863&app_key=e08ee008e50d82b421467fee14ab421b"
   );
   var current = await response.json();
   var top = document.getElementsByClassName("top");
   top[0].innerHTML = "Current Weather - Today - " + days[day];
-  top[1].innerHTML = "Weather = " + current.wx_desc;
-  top[2].innerHTML = "Current Wind Speed = " + current.windspd_mph + "mph";
-  top[3].innerHTML = "Current Temp = " + current.temp_c + " °C";
+  top[1].innerHTML = "Weather: " + current.wx_desc;
+  top[2].innerHTML = "Current wind speed: " + current.windspd_mph + "mph";
+  top[3].innerHTML = "Current temp: " + current.temp_c + " °C";
   top[4].innerHTML =
     "Wind Direction = " +
     current.winddir_deg +
@@ -94,38 +142,20 @@ function openCity(evt, cityName) {
   evt.currentTarget.className += " active";
 }
 
-function time1(time){
+function time1(time) {
 
   var result;
-  if(time.toString().length>=3){
-    if((time/100) > 12){
-      result = (time/100) - 12 + "PM";
-    }else{
-      result = (time/100) + "AM";
+  if (time.toString().length >= 3) {
+    if ((time / 100) > 12) {
+      result = (time / 100) - 12 + " PM";
+    } else {
+      result = (time / 100) + " AM";
     }
     return result;
   }
- if(time == 0){
-  result = "12 PM";
- }
- return result;;
-}
-
-function page(pageClass, next, data){
-  
-  weather[0 + next].innerHTML =
-    "Min Temp = " + data.Days[pageClass].temp_min_c + " °C";
-  weather[1 + next].innerHTML =
-    "Max Temp = " + data.Days[pageClass].temp_max_c + " °C";
-  weather[2 + next].innerHTML =
-    "Max Wind Speed = " + data.Days[pageClass].windspd_max_mph + "mph";
-  for(i=3;i<11;i++){
-    weather[i + next].innerHTML = time1(data.Days[pageClass].Timeframes[i-3].time);
+  if (time == 0) {
+    result = "12 PM";
   }
-  next += 11;
-  
-  return next;
+  return result;
 }
-
-
 
