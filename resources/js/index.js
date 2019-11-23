@@ -101,7 +101,7 @@ async function getCurrentWeather(lat, long) {
   );
   var current = await response.json();
   var top = document.getElementsByClassName("top");
-  top[0].innerHTML = "Current Weather - Today - " + days[day];
+  top[0].innerHTML = "Current Weather - Today - " + days[day-1];
   top[1].innerHTML = "Weather: " + current.wx_desc;
   top[2].innerHTML = "Current wind speed: " + current.windspd_mph + "mph";
   top[3].innerHTML = "Current temp: " + current.temp_c + " °C";
