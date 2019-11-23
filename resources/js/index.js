@@ -58,7 +58,7 @@ async function getWeather(lat, long) {
     "?app_id="
     + app_id +
     "+&app_key="
-    + app_key;
+    + app_key
   );
 
 
