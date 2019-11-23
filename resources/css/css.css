@@ -41,21 +41,32 @@
 .card1,
 .card2,
 .card3,
-.card4 {
-  margin-top: 1rem;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+.card4,
+.card5,
+.card6,
+.card7,
+.card8,
+.card9,
+.card10 {
+  justify-content: center;
+  border: 1px solid black;
+  padding:1rem;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: 100%;
+  margin-top: 1rem;
 }
 
 .mainCard {
   justify-content: center;
   align-items: center;
-  margin: auto;
   padding: 1rem;
   width: 90%;
   border: 5px solid black;
   padding-bottom: 1;
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem ;
 }
 .current {
   font-size: 1rem;
@@ -63,23 +74,48 @@
   align-items: center;
 }
 .card1 {
-  grid-area: weather;
+  grid-area: a1;
 }
 
 .card2 {
-  grid-area: temperature;
+  grid-area: a2;
 }
 
 .card3 {
-  grid-area: windspeed;
+  grid-area: a3;
 }
 
 .card4 {
-  grid-area: winddir;
+  grid-area: a4;
 }
 
+.card5 {
+  grid-area: a5;
+}
+
+.card6 {
+  grid-area: a6;
+}
+
+.card7 {
+  grid-area: a7;
+}
+
+.card8 {
+  grid-area: a8;
+}
+
+.card9 {
+  grid-area: a9;
+}
+
+.card10 {
+  grid-area: a10;
+}
 .card {
-  height: 50vh;
+  height: 200vh;
+  padding: 1rem;
+  width: 97%;
 }
 #image1 {
   width: 99%;
@@ -90,7 +126,13 @@
 .card1:hover,
 .card2:hover,
 .card3:hover,
-.card4:hover {
+.card4:hover,
+.card5:hover,
+.card6:hover,
+.card7:hover,
+.card8:hover,
+.card9:hover,
+.card10:hover {
   box-shadow: 0 82x 16px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -109,13 +151,19 @@
 .content {
   display: grid;
   grid-template-columns: 2fr 4fr 1fr 4fr 2fr;
-  grid-template-rows: 1fr;
-  grid-template-areas: " . temperature . windspeed . ";
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-areas: 
+  " . a1 . a2 . "
+  " . a3 . a4 . "
+  " . a5 . a6 . "
+  " . a7 . a8 . "
+  " . a9 . a10 . ";
+  
 }
 
 .tab {
   overflow: hidden;
-  border: 1px solid #ccc;
+  border: 5px solid #ccc;
   background-color: #f1f1f1;
 }
 
@@ -124,19 +172,19 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  margin-top: 1rem;
 }
 .top {
   text-align: left;
 }
 .tab button {
   background-color: inherit;
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 14px 16px;
+  padding: 2rem;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 .tab button:hover {
@@ -160,4 +208,9 @@
 .today {
   text-align: center;
   text-decoration: underline;
+}
+
+.fix{
+  width:97%;
+  margin: auto;
 }
