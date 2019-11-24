@@ -3,7 +3,6 @@ var today = document.getElementsByClassName("today")[0];
 var tabs = document.getElementsByClassName("tablinks");
 var app_id = "9e946863";
 var app_key = "e08ee008e50d82b421467fee14ab421b";
-
 var d = new Date();
 var day = d.getDay(); 
 var days = [
