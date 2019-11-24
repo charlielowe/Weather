@@ -4,7 +4,7 @@ var tabs = document.getElementsByClassName("tablinks");
 var app_id = "9e946863";
 var app_key = "e08ee008e50d82b421467fee14ab421b";
 var d = new Date();
-var day = d.getDay();
+var day = d.getDay(); 
 var days = [
   "Monday",
   "Tuesday",
@@ -14,8 +14,23 @@ var days = [
   "Saturday",
   "Sunday"
 ];
+
+
 window.addEventListener("load", function () {
+  for(i=0;i<5;i++){
+    var top = document.createElement("h1");
+    top.classList.add("top");
+    document.getElementsByClassName("topClass")[0].appendChild(top);
+  }
   for (i = 0; i < 7; i++) {
+    var tablink=document.createElement("button");
+    tablink.setAttribute("onclick","openTab(event, "+i+")");
+    tablink.classList.add("tablinks");
+    document.getElementsByClassName("tab")[0].appendChild(tablink);
+    var tabcontent = document.createElement("div");
+    tabcontent.classList.add("tabcontent");
+    tabcontent.setAttribute("id",i);
+    document.getElementsByClassName("card")[0].appendChild(tabcontent);
     if (day > 7) {
       day = 1;
     }
@@ -30,6 +45,7 @@ window.addEventListener("load", function () {
   }
 });
 
+
 var next = 0;
 var pageClass = 0;
 async function getWeather(lat, long) {
@@ -41,9 +57,7 @@ async function getWeather(lat, long) {
     "?app_id="
     + app_id +
     "+&app_key="
-    + app_key, {
-    type: "GET",
-  }
+    + app_key
   );
 
 
@@ -143,7 +157,7 @@ function showPosition(position) {
   getCurrentWeather(lat, long);
   getWeather(lat, long);
 }
-function openCity(evt, cityName) {
+function openTab(evt, day) {
   var i, tabcontent, tablinks;
 
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -156,7 +170,7 @@ function openCity(evt, cityName) {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
 
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(day).style.display = "block";
   evt.currentTarget.className += " active";
   scroll();
 }
@@ -182,4 +196,3 @@ function scroll() {
   var elmnt = document.getElementsByClassName("tab")[0];
   elmnt.scrollIntoView();
 }
-
