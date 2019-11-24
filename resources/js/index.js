@@ -3,6 +3,7 @@ var today = document.getElementsByClassName("today")[0];
 var tabs = document.getElementsByClassName("tablinks");
 var app_id = "9e946863";
 var app_key = "e08ee008e50d82b421467fee14ab421b";
+
 var d = new Date();
 var day = d.getDay(); 
 var days = [
@@ -33,6 +34,9 @@ window.addEventListener("load", function () {
     document.getElementsByClassName("card")[0].appendChild(tabcontent);
     if (day > 7) {
       day = 1;
+    }
+    if(day==0){
+      day=7;
     }
     tabs[i].textContent = days[day - 1];
     day++;
