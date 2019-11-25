@@ -5,7 +5,7 @@ var app_id = "9e946863";
 var app_key = "e08ee008e50d82b421467fee14ab421b";
 
 var d = new Date();
-var day = d.getDay(); 
+var day = d.getDay();
 var days = [
   "Monday",
   "Tuesday",
@@ -16,27 +16,25 @@ var days = [
   "Sunday"
 ];
 
-
+day = day;
 window.addEventListener("load", function () {
-  for(i=0;i<5;i++){
+  for (i = 0; i < 5; i++) {
     var top = document.createElement("h1");
     top.classList.add("top");
     document.getElementsByClassName("topClass")[0].appendChild(top);
   }
   for (i = 0; i < 7; i++) {
-    var tablink=document.createElement("button");
-    tablink.setAttribute("onclick","openTab(event, "+i+")");
+    var tablink = document.createElement("button");
+    tablink.setAttribute("onclick", "openTab(event, " + i + ")");
     tablink.classList.add("tablinks");
     document.getElementsByClassName("tab")[0].appendChild(tablink);
     var tabcontent = document.createElement("div");
     tabcontent.classList.add("tabcontent");
-    tabcontent.setAttribute("id",i);
+    tabcontent.setAttribute("id", i);
     document.getElementsByClassName("card")[0].appendChild(tabcontent);
+
     if (day > 7) {
       day = 1;
-    }
-    if(day==0){
-      day=7;
     }
     tabs[i].textContent = days[day - 1];
     day++;
@@ -49,7 +47,6 @@ window.addEventListener("load", function () {
   }
 });
 
-
 var next = 0;
 var pageClass = 0;
 async function getWeather(lat, long) {
@@ -58,16 +55,14 @@ async function getWeather(lat, long) {
     lat +
     "," +
     long +
-    "?app_id="
-    + app_id +
-    "+&app_key="
-    + app_key
+    "?app_id=" +
+    app_id +
+    "+&app_key=" +
+    app_key
   );
 
-
   var data = await response.json();
-  weather[0 + next].innerHTML =
-    tabs[pageClass].innerHTML;
+  weather[0 + next].innerHTML = tabs[pageClass].innerHTML;
   weather[1 + next].innerHTML =
     "Min Temp:" + data.Days[pageClass].temp_min_c + " °C";
   weather[2 + next].innerHTML =
@@ -82,29 +77,40 @@ async function getWeather(lat, long) {
     }
     next += 4;
     pageClass++;
-  }
-
-  catch (e) {
+  } catch (e) {
     var text = "ERROR";
     createMore(text, jsonArray, i);
-
   }
 }
 
 function createMore(text, jsonArray, i) {
-
   var headerTag = document.createElement("h1");
   headerTag.classList.add("weather");
   var newdiv = document.createElement("div");
   newdiv.classList.add("card" + (3 + i));
 
   if (text == "ERROR") {
-    var text = document.createTextNode("Sorry, we've ran out of data for this day.");
+    var text = document.createTextNode(
+      "Sorry, we've ran out of data for this day."
+    );
     headerTag.appendChild(text);
     newdiv.appendChild(headerTag);
-    document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+    document
+      .getElementById(pageClass)
+      .getElementsByClassName("content")[0]
+      .appendChild(newdiv);
   } else {
-    var info = [time(jsonArray.time), ("Weather: " + jsonArray.wx_desc), ("Temperature: " + jsonArray.temp_c + "°C"), ("Wind speed: " + jsonArray.windspd_mph + " MPH"), ("Wind direction: " + jsonArray.winddir_deg + "° / " + jsonArray.winddir_compass), ("../resources/images/icons/" + jsonArray.wx_icon)];
+    var info = [
+      time(jsonArray.time),
+      "Weather: " + jsonArray.wx_desc,
+      "Temperature: " + jsonArray.temp_c + "°C",
+      "Wind speed: " + jsonArray.windspd_mph + " MPH",
+      "Wind direction: " +
+      jsonArray.winddir_deg +
+      "° / " +
+      jsonArray.winddir_compass,
+      "../resources/images/icons/" + jsonArray.wx_icon
+    ];
     var anotherDiv = document.createElement("div");
     anotherDiv.classList.add("cardContent");
     for (k = 0; k < 5; k++) {
@@ -122,7 +128,10 @@ function createMore(text, jsonArray, i) {
     newdiv.appendChild(imageDiv);
   }
 
-  document.getElementById(pageClass).getElementsByClassName("content")[0].appendChild(newdiv);
+  document
+    .getElementById(pageClass)
+    .getElementsByClassName("content")[0]
+    .appendChild(newdiv);
 }
 
 async function getCurrentWeather(lat, long) {
@@ -136,17 +145,16 @@ async function getCurrentWeather(lat, long) {
     "&app_key=" +
     app_key
   );
+  if (day > 7) {
+    day = 1;
+  }
   var current = await response.json();
   var top = document.getElementsByClassName("top");
   top[0].innerHTML = "Current Weather - Today - (" + days[day - 1] + ")";
   top[1].innerHTML = "Weather: " + current.wx_desc;
   top[2].innerHTML = "Current wind speed: " + current.windspd_mph + "mph";
   top[3].innerHTML = "Current temp: " + current.temp_c + " °C";
-  top[4].innerHTML =
-    "Wind Direction = " +
-    current.winddir_deg +
-    " degrees / " +
-    current.winddir_compass;
+  top[4].innerHTML = "Wind Direction = " + current.winddir_deg + " degrees / " + current.winddir_compass;
 }
 
 function getLocation() {
@@ -180,13 +188,12 @@ function openTab(evt, day) {
 }
 
 function time(time) {
-
   var result;
   if (time.toString().length >= 3) {
-    if ((time / 100) > 12) {
-      result = (time / 100) - 12 + " PM";
+    if (time / 100 > 12) {
+      result = time / 100 - 12 + " PM";
     } else {
-      result = (time / 100) + " AM";
+      result = time / 100 + " AM";
     }
     return result;
   }
